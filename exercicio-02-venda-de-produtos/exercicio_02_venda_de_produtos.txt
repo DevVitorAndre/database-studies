@@ -1,0 +1,127 @@
+Exercício 02 – Venda de Produtos
+Modelo Conceitual – BRModelo
+
+ENUNCIADO
+
+Uma empresa vende produtos de limpeza e deseja melhorar o controle dos produtos que vende, seus clientes e os pedidos.
+
+Cada produto é caracterizado por:
+- Código único
+- Nome do produto
+- Categoria
+- Preço
+
+A categoria é uma classificação criada pela própria empresa, como:
+- Detergente
+- Sabão em pó
+- Sabonete
+
+A empresa possui informações sobre todos os seus clientes.
+
+Cada cliente possui:
+- Código único
+- Nome
+- Endereço:
+  - Rua
+  - Número
+  - Sala
+  - Cidade
+  - CEP
+  - UF
+- Telefone
+- Status: bom, médio ou ruim
+- Limite de crédito
+
+Também são armazenadas informações sobre os pedidos feitos pelos clientes.
+
+Cada pedido possui:
+- Número único
+- Data de elaboração
+
+Cada pedido pode conter de 1 a vários produtos e, para cada produto incluído no pedido, deve ser informada a quantidade pedida.
+
+
+MODELO CONCEITUAL
+
+ENTIDADE: CLIENTE
+Atributos:
+- cod_cliente (identificador)
+- nome
+- telefone
+- status
+- limite_credito
+- endereco (atributo composto)
+  - rua
+  - nro
+  - sala
+  - cidade
+  - cep
+  - UF
+
+ENTIDADE: PEDIDO
+Atributos:
+- numero_pedido (identificador)
+- data_elaboracao
+
+ENTIDADE: PRODUTO
+Atributos:
+- cod_produto (identificador)
+- nome_produto
+- preco
+
+ENTIDADE: CATEGORIA
+Atributos:
+- nome_categoria (identificador)
+
+
+RELACIONAMENTOS
+
+CLIENTE — FAZ — PEDIDO
+Cardinalidades no BRModelo:
+- Cliente: (1,1)
+- Pedido: (0,n)
+
+Interpretação:
+- Um cliente pode realizar zero ou vários pedidos.
+- Cada pedido pertence a um único cliente.
+
+
+PEDIDO — CONTÉM — PRODUTO
+Cardinalidades no BRModelo:
+- Pedido: (0,n)
+- Produto: (1,n)
+
+Atributo do relacionamento:
+- quantidade
+
+Interpretação:
+- Cada pedido deve possuir de 1 a vários produtos.
+- Um produto pode aparecer em zero ou vários pedidos.
+- A quantidade depende do produto dentro de cada pedido.
+
+
+PRODUTO — PERTENCE — CATEGORIA
+Cardinalidades no BRModelo:
+- Produto: (0,n)
+- Categoria: (1,1)
+
+Interpretação:
+- Cada produto pertence a uma única categoria.
+- Uma categoria pode possuir zero ou vários produtos.
+
+
+RESUMO
+
+Entidades:
+- Cliente
+- Pedido
+- Produto
+- Categoria
+
+Relacionamentos:
+- Faz
+- Contém
+- Pertence
+
+Atributo do relacionamento Contém:
+- quantidade
