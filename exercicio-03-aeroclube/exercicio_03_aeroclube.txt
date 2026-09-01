@@ -1,0 +1,148 @@
+Exercício 03 – Aeroclube
+Modelo Conceitual – BRModelo
+
+ENUNCIADO
+
+Num aeroclube, estão inscritos pilotos, instrutores e alunos de pilotagem. Todos os sócios (inscritos) são identificados pelo número de matrícula e caracterizados por nome, endereço e idade.
+
+Os pilotos possuem um número de brevê único.
+
+Os instrutores são pilotos com formação adicional de instrutor. Para eles, deve ser registrado:
+- Nome do curso
+- Data de obtenção do diploma
+- Instituição
+
+Para os alunos de pilotagem, são guardados os registros de todas as suas saídas, para contabilização das horas necessárias à obtenção do brevê.
+
+Para cada saída registra-se:
+- Data
+- Instrutor
+- Hora de saída
+- Hora de chegada
+- Parecer do instrutor sobre o voo
+
+A escola ministra apenas cursos básicos, portanto não há instrutores que sejam alunos de cursos avançados.
+
+Para emissão do brevê, o aluno deve comprovar o número mínimo de horas de voo e apresentar os pareceres dos instrutores sobre as habilidades desenvolvidas em cada aula prática.
+
+
+MODELO CONCEITUAL
+
+ENTIDADE: SOCIO
+Atributos:
+- matricula (identificador)
+- nome
+- endereco
+- idade
+
+
+ENTIDADE: PILOTO
+Atributos:
+- numero_breve (único)
+
+
+ENTIDADE: INSTRUTOR
+Atributos:
+- nome_curso
+- data_diploma
+- instituicao
+
+
+ENTIDADE: ALUNO
+Atributos:
+- Os dados básicos são herdados de SOCIO.
+
+
+ENTIDADE: SAIDA
+Atributos:
+- id_saida (identificador)
+- data
+- hora_saida
+- hora_chegada
+- parecer
+
+
+RELACIONAMENTOS
+
+SOCIO — É_PILOTO — PILOTO
+Cardinalidades no BRModelo:
+- Próximo de SOCIO: (1,1)
+- Próximo de PILOTO: (0,1)
+
+Interpretação:
+- Todo piloto é um sócio.
+- Um sócio pode ou não ser piloto.
+
+
+SOCIO — É_ALUNO — ALUNO
+Cardinalidades no BRModelo:
+- Próximo de SOCIO: (1,1)
+- Próximo de ALUNO: (0,1)
+
+Interpretação:
+- Todo aluno é um sócio.
+- Um sócio pode ou não ser aluno.
+
+
+PILOTO — É_INSTRUTOR — INSTRUTOR
+Cardinalidades no BRModelo:
+- Próximo de PILOTO: (1,1)
+- Próximo de INSTRUTOR: (0,1)
+
+Interpretação:
+- Todo instrutor é um piloto.
+- Nem todo piloto é instrutor.
+
+
+ALUNO — REALIZA — SAIDA
+Cardinalidades no BRModelo:
+- Próximo de ALUNO: (1,1)
+- Próximo de SAIDA: (0,n)
+
+Interpretação:
+- Um aluno pode realizar nenhuma ou várias saídas.
+- Cada saída pertence a um único aluno.
+
+
+INSTRUTOR — ORIENTA — SAIDA
+Cardinalidades no BRModelo:
+- Próximo de INSTRUTOR: (1,1)
+- Próximo de SAIDA: (0,n)
+
+Interpretação:
+- Um instrutor pode orientar nenhuma ou várias saídas.
+- Cada saída é acompanhada por um único instrutor.
+
+
+REGRAS IMPORTANTES
+
+- Todo instrutor é obrigatoriamente um piloto.
+- Pilotos, instrutores e alunos são sócios do aeroclube.
+- O número do brevê é único para cada piloto.
+- Cada saída registra as horas de início e fim do voo.
+- O parecer do instrutor é armazenado para cada saída.
+- As horas de voo do aluno podem ser calculadas através dos registros de hora de saída e hora de chegada.
+- Para obter o brevê, o aluno precisa atingir o número mínimo de horas de voo e possuir os pareceres das aulas práticas.
+- A escola ministra apenas cursos básicos.
+
+
+RESUMO
+
+Entidades:
+- Socio
+- Piloto
+- Instrutor
+- Aluno
+- Saida
+
+Relacionamentos:
+- É_Piloto
+- É_Aluno
+- É_Instrutor
+- Realiza
+- Orienta
+
+Principais identificadores:
+- Socio: matricula
+- Piloto: numero_breve (único)
+- Saida: id_saida
