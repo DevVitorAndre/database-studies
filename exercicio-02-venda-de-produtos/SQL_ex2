@@ -1,0 +1,46 @@
+CREATE TABLE Cliente 
+( 
+ cod_cliente INT PRIMARY KEY,  
+ nome INT,  
+ telefone INT,  
+ status INT,  
+ limite_credito INT,  
+ cep INT,  
+ rua INT,  
+ sala INT,  
+ cidade INT,  
+ UF INT,  
+ nro INT,  
+); 
+
+CREATE TABLE Pedido 
+( 
+ numero_pedido INT PRIMARY KEY,  
+ idCliente INT,  
+ data_elaboracao INT,  
+); 
+
+CREATE TABLE Produto 
+( 
+ cod_produto INT PRIMARY KEY,  
+ idCategoria INT,  
+ nome_produto INT,  
+ preco INT,  
+); 
+
+CREATE TABLE Categoria 
+( 
+ nome_categoria INT PRIMARY KEY,  
+); 
+
+CREATE TABLE Contem 
+( 
+ cod_produto INT PRIMARY KEY,  
+ numero_pedido INT PRIMARY KEY,  
+ quantidade INT,  
+); 
+
+ALTER TABLE Pedido ADD FOREIGN KEY(idCliente) REFERENCES Cliente (idCliente)
+ALTER TABLE Produto ADD FOREIGN KEY(idCategoria) REFERENCES Categoria (idCategoria)
+ALTER TABLE Contem ADD FOREIGN KEY(cod_produto) REFERENCES Produto (cod_produto)
+ALTER TABLE Contem ADD FOREIGN KEY(numero_pedido) REFERENCES Pedido (numero_pedido)
